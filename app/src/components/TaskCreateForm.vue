@@ -11,7 +11,9 @@ interface FormModel {
   title: string
 }
 
-const model = ref<FormModel>()
+const model = ref<FormModel>({
+  title: ''
+})
 
 const emit = defineEmits(['submit'])
 

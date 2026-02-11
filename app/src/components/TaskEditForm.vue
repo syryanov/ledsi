@@ -19,7 +19,10 @@ interface FormModel {
   status: TaskStatus,
 }
 
-const model = ref<FormModel>()
+const model = ref<FormModel>({
+  title: '',
+  status: '',
+})
 
 const statusOptions = [
   {
