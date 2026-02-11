@@ -1,11 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, type Component } from 'vue'
+import { useRoute } from 'vue-router'
+
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import EmptyLayout from '@/layouts/EmptyLayout.vue'
+import Toast from 'primevue/toast'
+
+const route = useRoute()
+
+const layout = computed<Component>(() => {
+  if (route.meta.layout == 'DefaultLayout') {
+    return DefaultLayout
+  }
+
+  if (route.meta.layout == 'EmptyLayout') {
+    return EmptyLayout
+  }
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+<div>
+  <component :is="layout">
+    <router-view />
+  </component>
+  <Toast />
+</div>
 </template>
 
 <style scoped></style>
